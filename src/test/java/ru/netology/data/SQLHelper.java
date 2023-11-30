@@ -14,12 +14,12 @@ public class SQLHelper {
     private SQLHelper() {
 
     }
-
-    private static final String user = System.getProperty("app");
-    private static final String password = System.getProperty("pass");
+    private static final String url = System.getProperty("db.url");
+    private static final String user = System.getProperty("db.user");
+    private static final String password = System.getProperty("db.password");
 
     private static Connection getConnMySQL() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", user, password);
+        return DriverManager.getConnection(url, user, password);
     }
 
     private static Connection getConnPostgresQL() throws SQLException {
