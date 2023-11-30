@@ -18,45 +18,28 @@ public class SQLHelper {
     private static final String user = System.getProperty("db.user");
     private static final String password = System.getProperty("db.password");
 
-    private static Connection getConnMySQL() throws SQLException {
-        return DriverManager.getConnection(url, user, password);
-    }
-
-    private static Connection getConnPostgresQL() throws SQLException {
-        return DriverManager.getConnection("jdbc:postgresql://localhost:5432/app", user, password);
+    private static Connection getConn() throws SQLException {
+        return DriverManager.getConnection( url, user, password);
     }
 
     @SneakyThrows
-    public static DataHelper.PaymentStatus getStatusMySQL() {
+    public static String getStatus() {
         var codeSQL = "SELECT status FROM payment_entity";
-        var conn = getConnMySQL();
+        var conn = getConn();
         var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
 
-        return new DataHelper.PaymentStatus(code);
+        return code;
     }
 
-    @SneakyThrows
-    public static DataHelper.PaymentStatus getStatusPostgresQL() {
-        var codeSQL = "SELECT status FROM payment_entity";
-        var conn = getConnPostgresQL();
-        var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
-
-        return new DataHelper.PaymentStatus(code);
-    }
 
     @SneakyThrows
-    public static void cleanMySQLBase() {
-        var connection = getConnMySQL();
-        runner.execute(connection, "DELETE FROM credit_request_entity;");
+    public static void cleanDataBase() {
+        var connection = getConn();
         runner.execute(connection, "DELETE FROM order_entity;");
         runner.execute(connection, "DELETE FROM payment_entity;");
+        runner.execute(connection, "DELETE FROM credit_request_entity;");
     }
 
-    @SneakyThrows
-    public static void cleanPostgresQLBase() {
-        var connection = getConnPostgresQL();
-        runner.execute(connection, "DELETE FROM credit_request_entity;");
-        runner.execute(connection, "DELETE FROM order_entity;");
-        runner.execute(connection, "DELETE FROM payment_entity;");
-    }
 }
+
+

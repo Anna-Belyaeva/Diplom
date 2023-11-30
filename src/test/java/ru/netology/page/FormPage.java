@@ -3,7 +3,10 @@ package ru.netology.page;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class FormPage {
@@ -31,10 +34,17 @@ public class FormPage {
         completeButton.click();
     }
 
-    private final SelenideElement successfulMessage = $$(".notification__content").find(exactText("Операция одобрена Банком."));
+    public void messageSuccessful(){
+        SelenideElement successfulMessage = $$(".notification__content")
+                .find(exactText("Операция одобрена Банком."))
+                .shouldBe(visible, Duration.ofSeconds(15));
+    }
 
-    private final SelenideElement errorMessage = $$(".notification__content").find(exactText("Ошибка! Банк отказал в проведении операции."));
-
+    public void messageError(){
+        SelenideElement errorMessage = $$(".notification__content")
+                .find(exactText("Ошибка! Банк отказал в проведении операции."))
+                .shouldBe(visible, Duration.ofSeconds(15));
+    }
     private final SelenideElement wrongFormat = $$(".input__sub").find(exactText("Неверный формат"));
 
     private final SelenideElement wrongValidity = $$(".input__sub").find(exactText("Неверно указан срок действия карты"));

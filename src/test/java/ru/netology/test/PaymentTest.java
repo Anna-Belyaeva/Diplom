@@ -17,19 +17,19 @@ public class PaymentTest {
         payPage.paymentCard();
     }
 
-   /* @AfterEach
+    @AfterEach
     void cleanDB(){
-        SQLHelper.cleanMySQLBase();
-        SQLHelper.cleanPostgresQLBase();
-    }*/
+        SQLHelper.cleanDataBase();
+    }
 
 
     @Test
-    void paymentApprovedCardMySQL() {
+    void paymentApprovedCard() {
         var card = DataHelper.getValidCardInfo();
         formPage.setPaymentCardInfo(card);
+        formPage.messageSuccessful();
 
-        var status = SQLHelper.getStatusMySQL();
+        String status = SQLHelper.getStatus();
 
         assertEquals("APPROVED", status);
     }
