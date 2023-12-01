@@ -1,7 +1,6 @@
 # План автоматизации
 
 ## Валидные значения полей
-
   - "Номер карты" - 4444 4444 4444 4441
   - "Месяц" - текущий месяц в численном значении
   - "Год" - последние 2 числа текущего года
@@ -9,10 +8,9 @@
   - CVC/CVV - 3 числа
 
 ## Тестовые сценарии
-
-![1](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/48e66f47-4334-4f81-bdf0-926e52b20f0b)
-![2](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/cc1de2cf-f062-4320-99ed-7b4306b55068)
-![3](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/1e4bd5c5-e8de-4a08-81f3-5c07de7510ac)
+![1](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/f50a8c58-eefa-4710-87d9-77c002e9e780)
+![2](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/d2b61929-6dba-4fde-9a99-f1bca5ffe697)
+![3](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/fc807dd8-1467-4b8b-ab03-40ba4e1c61be)
 ![4](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/6d201dc4-b80d-4763-bf33-27a7de15ae50)
 ![5](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/84532a30-714f-4673-97e3-9453aec98da7)
 ![6](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/3e7bc1bc-0f9b-4605-9bce-3b72645b11eb)
