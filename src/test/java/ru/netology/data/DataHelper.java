@@ -21,6 +21,10 @@ public class DataHelper {
         return new CardInfo(getValidCardNumber(), generateValidMonth(), generateValidYear(), generateValidCardholderName(), generateCVC());
     }
 
+    public static CardInfo getEmptyCardInfo() {
+        return new CardInfo("", "", "", "", "");
+    }
+
     public static CardInfo cardNumberValidate(String number) {
         return new CardInfo(number, generateValidMonth(), generateValidYear(), generateValidCardholderName(), generateCVC());
     }

@@ -14,12 +14,13 @@ public class SQLHelper {
     private SQLHelper() {
 
     }
+
     private static final String url = System.getProperty("db.url");
     private static final String user = System.getProperty("db.user");
     private static final String password = System.getProperty("db.password");
 
     private static Connection getConn() throws SQLException {
-        return DriverManager.getConnection( url, user, password);
+        return DriverManager.getConnection(url, user, password);
     }
 
     @SneakyThrows
@@ -30,7 +31,6 @@ public class SQLHelper {
 
         return code;
     }
-
 
     @SneakyThrows
     public static void cleanDataBase() {
