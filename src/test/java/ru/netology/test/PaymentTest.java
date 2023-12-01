@@ -6,7 +6,6 @@ import ru.netology.data.SQLHelper;
 import ru.netology.page.FormPage;
 import ru.netology.page.PaymentPage;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentTest {
@@ -92,6 +91,62 @@ public class PaymentTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.messageEmptyField(4);
+    }
+
+    @Test
+    void paymentCardNumber15numbers() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateNumbers(15));
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
+    }
+
+    @Test
+    void paymentCardNumber17numbers() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateNumbers(17));
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageErrorNotification();
+    }
+
+    @Test
+    void paymentCardNumberCyrillic() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateCyrillic());
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
+    }
+
+    @Test
+    void paymentCardNumberLatin() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateValidCardholderName());
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
+    }
+
+    @Test
+    void paymentCardNumberHieroglyph() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateHieroglyph());
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
+    }
+
+    @Test
+    void paymentCardNumberChar() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateChar());
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
+    }
+
+    @Test
+    void paymentCardNumberZero() {
+        var card = DataHelper.cardNumberValidate(DataHelper.generateZero(16));
+        formPage.setPaymentCardInfo(card);
+
+        formPage.messageWrongFormat(0);
     }
 
 }
