@@ -1,6 +1,9 @@
 package ru.netology.test;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.FormPage;
@@ -8,13 +11,14 @@ import ru.netology.page.PaymentPage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class PaymentTest {
+public class CreditTest {
+
     FormPage formPage = new FormPage();
 
     @BeforeEach
     void paymentTur() {
         var payPage = new PaymentPage();
-        payPage.paymentCard();
+        payPage.paymentCredit();
     }
 
     @AfterEach
@@ -24,28 +28,28 @@ public class PaymentTest {
 
 
     @Test
-    @DisplayName("1.Payment with a approved card")
-    void paymentApprovedCard() {
+    @DisplayName("44.Credit with a approved card")
+    void creditApprovedCard() {
         var card = DataHelper.getValidCardInfo();
         formPage.setPaymentCardInfo(card);
         formPage.messageSuccessfulNotification();
 
-        assertEquals("APPROVED", SQLHelper.getStatusPayment());
+        assertEquals("APPROVED", SQLHelper.getStatusCredit());
     }
 
     @Test
-    @DisplayName("2.Payment with a declined card")
-    void paymentDeclinedCard() {
+    @DisplayName("45.Credit with a declined card")
+    void creditDeclinedCard() {
         var card = DataHelper.cardNumberValidate(DataHelper.getInValidCardNumber());
         formPage.setPaymentCardInfo(card);
         formPage.messageErrorNotification();
 
-        assertEquals("DECLINED", SQLHelper.getStatusPayment());
+        assertEquals("DECLINED", SQLHelper.getStatusCredit());
     }
 
     @Test
-    @DisplayName("3.Payment.Empty form")
-    void paymentEmptyForm() {
+    @DisplayName("46.Credit.Empty form")
+    void creditEmptyForm() {
         var card = DataHelper.getEmptyCardInfo();
         formPage.setPaymentCardInfo(card);
 
@@ -57,8 +61,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("4.Payment.Empty card number")
-    void paymentEmptyCardNumber() {
+    @DisplayName("47.Credit.Empty card number")
+    void creditEmptyCardNumber() {
         var card = DataHelper.cardNumberValidate("");
         formPage.setPaymentCardInfo(card);
 
@@ -66,8 +70,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("5.Payment.Empty month")
-    void paymentEmptyMonth() {
+    @DisplayName("48.Credit.Empty month")
+    void creditEmptyMonth() {
         var card = DataHelper.monthValidate("");
         formPage.setPaymentCardInfo(card);
 
@@ -75,8 +79,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("6.Payment.Empty year")
-    void paymentEmptyYear() {
+    @DisplayName("49.Credit.Empty year")
+    void creditEmptyYear() {
         var card = DataHelper.yearValidate("");
         formPage.setPaymentCardInfo(card);
 
@@ -84,8 +88,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("7.Payment.Empty cardholder name")
-    void paymentEmptyCardholderName() {
+    @DisplayName("50.Credit.Empty cardholder name")
+    void creditEmptyCardholderName() {
         var card = DataHelper.cardholderNameValidate("");
         formPage.setPaymentCardInfo(card);
 
@@ -93,8 +97,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("8.Payment.Empty cvc-code")
-    void paymentEmptyCVC() {
+    @DisplayName("51.Credit.Empty cvc-code")
+    void creditEmptyCVC() {
         var card = DataHelper.cvcCodeValidate("");
         formPage.setPaymentCardInfo(card);
 
@@ -102,8 +106,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("9.Payment.Card number validation.15 numbers")
-    void paymentCardNumber15numbers() {
+    @DisplayName("52.Credit.Card number validation.15 numbers")
+    void creditCardNumber15numbers() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateNumbers(15));
         formPage.setPaymentCardInfo(card);
 
@@ -111,8 +115,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("10.Payment.Card number validation.17 numbers")
-    void paymentCardNumber17numbers() {
+    @DisplayName("53.Credit.Card number validation.17 numbers")
+    void creditCardNumber17numbers() {
         var number = DataHelper.generateNumbers(17);
         var card = DataHelper.cardNumberValidate(number);
         formPage.setPaymentCardInfo(card);
@@ -123,8 +127,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("11.Payment.Card number validation.Cyrillic")
-    void paymentCardNumberCyrillic() {
+    @DisplayName("54.Credit.Card number validation.Cyrillic")
+    void creditCardNumberCyrillic() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
@@ -133,8 +137,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("12.Payment.Card number validation.Latin")
-    void paymentCardNumberLatin() {
+    @DisplayName("55.Credit.Card number validation.Latin")
+    void creditCardNumberLatin() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
@@ -143,8 +147,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("13.Payment.Card number validation.Hieroglyph")
-    void paymentCardNumberHieroglyph() {
+    @DisplayName("56.Credit.Card number validation.Hieroglyph")
+    void creditCardNumberHieroglyph() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
@@ -153,8 +157,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("14.Payment.Card number validation.Char")
-    void paymentCardNumberChar() {
+    @DisplayName("57.Credit.Card number validation.Char")
+    void creditCardNumberChar() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
@@ -163,8 +167,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("15.Payment.Card number validation.Zero")
-    void paymentCardNumberZero() {
+    @DisplayName("58.Credit.Card number validation.Zero")
+    void creditCardNumberZero() {
         var card = DataHelper.cardNumberValidate(DataHelper.generateZero(16));
         formPage.setPaymentCardInfo(card);
 
@@ -172,8 +176,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("16.Payment.Month.1 number")
-    void paymentMonth1number() {
+    @DisplayName("59.Credit.Month.1 number")
+    void creditMonth1number() {
         var card = DataHelper.monthValidate(DataHelper.generateNumbers(1));
         formPage.setPaymentCardInfo(card);
 
@@ -181,8 +185,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("17.Payment.Month.3 number")
-    void paymentMonth3number() {
+    @DisplayName("60.Credit.Month.3 number")
+    void creditMonth3number() {
         var number = DataHelper.generateNumbers(3);
         var card = DataHelper.monthValidate(number);
         formPage.setPaymentCardInfo(card);
@@ -191,8 +195,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("18.Payment.Not exist month")
-    void paymentNotExistMonth() {
+    @DisplayName("61.Credit.Not exist month")
+    void creditNotExistMonth() {
         var card = DataHelper.monthValidate(DataHelper.generateNumbersBetween(13, 99));
         formPage.setPaymentCardInfo(card);
 
@@ -200,8 +204,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("19.Payment.Expired month")
-    void paymentExpiredMonth() {
+    @DisplayName("62.Credit.Expired month")
+    void creditExpiredMonth() {
 
         var yearInt = Byte.parseByte(DataHelper.generateValidYear()) - 1;
         String yearStr = String.valueOf(yearInt);
@@ -213,8 +217,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("20.Payment.Month.Cyrillic")
-    void paymentMonthCyrillic() {
+    @DisplayName("63.Credit.Month.Cyrillic")
+    void creditMonthCyrillic() {
         var card = DataHelper.monthValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
@@ -223,8 +227,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("21.Payment.Month.Latin")
-    void paymentMonthLatin() {
+    @DisplayName("64.Credit.Month.Latin")
+    void creditMonthLatin() {
         var card = DataHelper.monthValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
@@ -233,8 +237,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("22.Payment.Month.Hieroglyph")
-    void paymentMonthHieroglyph() {
+    @DisplayName("65.Credit.Month.Hieroglyph")
+    void creditMonthHieroglyph() {
         var card = DataHelper.monthValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
@@ -243,8 +247,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("23.Payment.Month.Char")
-    void paymentMonthChar() {
+    @DisplayName("66.Credit.Month.Char")
+    void creditMonthChar() {
         var card = DataHelper.monthValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
@@ -253,8 +257,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("24.Payment.Year.1 number")
-    void paymentYear1number() {
+    @DisplayName("67.Credit.Year.1 number")
+    void creditYear1number() {
         var card = DataHelper.yearValidate(DataHelper.generateNumbers(1));
         formPage.setPaymentCardInfo(card);
 
@@ -262,8 +266,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("25.Payment.Year.3 number")
-    void paymentYear3number() {
+    @DisplayName("68.Credit.Year.3 number")
+    void creditYear3number() {
         var number = DataHelper.generateNumbers(3);
         var card = DataHelper.yearValidate(number);
         formPage.setPaymentCardInfo(card);
@@ -272,8 +276,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("26.Payment.Not exist year")
-    void paymentNotExistYear() {
+    @DisplayName("69.Credit.Not exist year")
+    void creditNotExistYear() {
         var yearInt = Byte.parseByte(DataHelper.generateValidYear()) + 11;
         String yearStr = String.valueOf(yearInt);
 
@@ -284,8 +288,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("27.Payment.Expired year")
-    void paymentExpiredYear() {
+    @DisplayName("70.Credit.Expired year")
+    void creditExpiredYear() {
 
         var yearInt = Byte.parseByte(DataHelper.generateValidYear()) - 1;
         String yearStr = String.valueOf(yearInt);
@@ -297,8 +301,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("28.Payment.Year.Cyrillic")
-    void paymentYearCyrillic() {
+    @DisplayName("71.Credit.Year.Cyrillic")
+    void creditYearCyrillic() {
         var card = DataHelper.yearValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
@@ -307,8 +311,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("29.Payment.Year.Latin")
-    void paymentYearLatin() {
+    @DisplayName("72.Credit.Year.Latin")
+    void creditYearLatin() {
         var card = DataHelper.yearValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
@@ -317,8 +321,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("30.Payment.Year.Hieroglyph")
-    void paymentYearHieroglyph() {
+    @DisplayName("73.Credit.Year.Hieroglyph")
+    void creditYearHieroglyph() {
         var card = DataHelper.yearValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
@@ -327,8 +331,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("31.Payment.Year.Char")
-    void paymentYearChar() {
+    @DisplayName("74.Credit.Year.Char")
+    void creditYearChar() {
         var card = DataHelper.yearValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
@@ -337,8 +341,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("32.Payment.CardholderName.Partial name")
-    void paymentPartialCardholderName() {
+    @DisplayName("75.Credit.CardholderName.Partial name")
+    void creditPartialCardholderName() {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateLatin().substring(0, 1));
         formPage.setPaymentCardInfo(card);
 
@@ -346,8 +350,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("33.Payment.CardholderName.Numbers")
-    void paymentCardholderNameNumbers() {
+    @DisplayName("76.Credit.CardholderName.Numbers")
+    void creditCardholderNameNumbers() {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateNumbers(2));
         formPage.setPaymentCardInfo(card);
 
@@ -356,8 +360,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("34.Payment.CardholderName.Cyrillic")
-    void paymentCardholderNameCyrillic() {
+    @DisplayName("77.Credit.CardholderName.Cyrillic")
+    void creditCardholderNameCyrillic() {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
@@ -366,8 +370,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("35.Payment.CardholderName.Char")
-    void paymentCardholderNameChar() {
+    @DisplayName("78.Credit.CardholderName.Char")
+    void creditCardholderNameChar() {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
@@ -376,8 +380,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("36.Payment.CardholderName.Hieroglyph")
-    void paymentCardholderNameHieroglyph() {
+    @DisplayName("79.Credit.CardholderName.Hieroglyph")
+    void creditCardholderNameHieroglyph() {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
@@ -386,8 +390,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("37.Payment.CVC.2 number")
-    void paymentCVC2number() {
+    @DisplayName("80.Credit.CVC.2 number")
+    void creditCVC2number() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateNumbers(2));
         formPage.setPaymentCardInfo(card);
 
@@ -395,8 +399,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("38.Payment.CVC.4 number")
-    void paymentCVC4number() {
+    @DisplayName("81.Credit.CVC.4 number")
+    void creditCVC4number() {
         var number = DataHelper.generateNumbers(4);
         var card = DataHelper.cvcCodeValidate(number);
         formPage.setPaymentCardInfo(card);
@@ -405,8 +409,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("39.Payment.CVC.Zero")
-    void paymentCVCZero() {
+    @DisplayName("82.Credit.CVC.Zero")
+    void creditCVCZero() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateZero(3));
         formPage.setPaymentCardInfo(card);
 
@@ -414,8 +418,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("40.Payment.CVC.Char")
-    void paymentCVCChar() {
+    @DisplayName("83.Credit.CVC.Char")
+    void creditCVCChar() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
@@ -424,8 +428,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("41.Payment.CVC.Hieroglyph")
-    void paymentCVCHieroglyph() {
+    @DisplayName("84.CVC.Hieroglyph")
+    void creditCVCHieroglyph() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
@@ -434,8 +438,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("42.Payment.CVC.Latin")
-    void paymentCVCLatin() {
+    @DisplayName("85.Credit.CVC.Latin")
+    void creditCVCLatin() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
@@ -444,8 +448,8 @@ public class PaymentTest {
     }
 
     @Test
-    @DisplayName("43.Payment.CVC.Cyrillic")
-    void paymentCVCCyrillic() {
+    @DisplayName("86.Credit.CVC.Cyrillic")
+    void creditCVCCyrillic() {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
@@ -453,4 +457,5 @@ public class PaymentTest {
         assertEquals("", FormPage.getValueAttribute(4));
     }
 }
+
 

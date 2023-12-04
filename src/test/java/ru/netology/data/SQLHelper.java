@@ -24,8 +24,17 @@ public class SQLHelper {
     }
 
     @SneakyThrows
-    public static String getStatus() {
+    public static String getStatusPayment() {
         var codeSQL = "SELECT status FROM payment_entity";
+        var conn = getConn();
+        var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
+
+        return code;
+    }
+
+    @SneakyThrows
+    public static String getStatusCredit() {
+        var codeSQL = "SELECT status FROM credit_request_entity";
         var conn = getConn();
         var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
 
