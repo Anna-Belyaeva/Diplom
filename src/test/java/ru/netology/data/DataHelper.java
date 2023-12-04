@@ -47,37 +47,30 @@ public class DataHelper {
     }
 
     public static String getValidCardNumber() {
-
         return "4444 4444 4444 4441";
     }
 
     public static String getInValidCardNumber() {
-
         return "4444 4444 4444 4442";
     }
 
     public static String generateValidMonth() {
-
         return LocalDate.now().format(DateTimeFormatter.ofPattern("MM"));
     }
 
     public static String generateValidYear() {
-
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
     }
 
     public static String generateNumbers(int quantity) {
-
         return String.format(faker.number().digits(quantity));
     }
 
     public static String generateNumbersBetween(int min, int max) {
-
         return String.format("%02d", faker.number().numberBetween(min, max));
     }
 
     public static String generateZero(int quantity) {
-
         String zero = "0";
         for (int i = quantity - 1; i > 0; i--) {
             zero = zero + "0";
@@ -97,14 +90,14 @@ public class DataHelper {
     public static String generateHieroglyph() {
         String[] genJap = {"一", "人", "七", "八", "九", "十", "入", "二", "三",
                 "上", "定", "底", "的", "毒", "乳", "念", "波", "拝", "板",
-                "版", "非", "表", "府", "武", "並", "放", "法", "宝", "枚" };
+                "版", "非", "表", "府", "武", "並", "放", "法", "宝", "枚"};
 
         return genJap[new Random().nextInt(genJap.length)];
     }
 
     public static String generateChar() {
         String[] genChar = {"`", "~", "!", "@", "#", "№", "$", "%",
-                "^", "&", "*", "(", ")", ";", ":", "?", "_", "-", "+", "=" };
+                "^", "&", "*", "(", ")", ";", ":", "?", "_", "-", "+", "="};
 
         return genChar[new Random().nextInt(genChar.length)];
     }
