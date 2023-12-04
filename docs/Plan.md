@@ -8,17 +8,18 @@
   - CVC/CVV - 3 числа
 
 ## Тестовые сценарии
-![1](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/f50a8c58-eefa-4710-87d9-77c002e9e780)
-![2](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/d2b61929-6dba-4fde-9a99-f1bca5ffe697)
-![3](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/fc807dd8-1467-4b8b-ab03-40ba4e1c61be)
-![4](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/6d201dc4-b80d-4763-bf33-27a7de15ae50)
-![5](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/84532a30-714f-4673-97e3-9453aec98da7)
-![6](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/3e7bc1bc-0f9b-4605-9bce-3b72645b11eb)
-![7](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/6c9cf83c-8c59-4151-a391-48159c91fc57)
-![8](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/d8f02d9e-2f9e-45d2-9de5-ab4e1cc4f951)
-![9](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/28dbd0d8-ae90-427d-95ea-49551725b9be)
-![10](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/88a564ed-12d8-4fc5-b9c0-afe9f9c6b758)
-![11](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/012ea44b-19b7-4ab1-8ecf-f284850b2a38)
+![1](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/ecd7f54c-5555-464a-a2a7-d43866b7f5dd)
+![2](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/1f621609-a522-40c1-9145-3ffe4a9b2d42)
+![3](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/3b220193-7c05-493c-9260-73f4f865672c)
+![4](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/53566d2f-45ba-4527-ab38-e80192fa54b6)
+![5](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/1a39cc60-8074-4ad8-a931-c6885b71e12b)
+![6](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/ba07d539-0cf2-46aa-9182-2662562a7c15)
+![7](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/b96b2b66-961c-439e-9044-cbf9a85eee26)
+![8](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/5f4be26d-304b-4eba-b235-fee3b9f0594b)
+![9](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/4663f0f9-8603-4411-bbb4-22d91edd0342)
+![10](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/524747c9-22e2-4507-927e-e538128534bc)
+![11](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/6a445203-1837-4e2f-a921-4905e01d6861)
+![12](https://github.com/Anna-Belyaeva/Diplom/assets/105930064/9ec2cdfe-2d46-4cf0-9931-63130f16d3fa)
 
 ## Перечень используемых инструментов с обоснованием выбора
 1. Java - язык програмирования.
