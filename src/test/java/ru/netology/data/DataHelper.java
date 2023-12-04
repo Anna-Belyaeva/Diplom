@@ -19,7 +19,7 @@ public class DataHelper {
     }
 
     public static CardInfo getValidCardInfo() {
-        return new CardInfo(getValidCardNumber(), generateValidMonth(), generateValidYear(), generateValidCardholderName(), generateNumbers(3));
+        return new CardInfo(getValidCardNumber(), generateValidMonth(), generateValidYear(), generateLatin(), generateNumbers(3));
     }
 
     public static CardInfo getEmptyCardInfo() {
@@ -27,15 +27,15 @@ public class DataHelper {
     }
 
     public static CardInfo cardNumberValidate(String number) {
-        return new CardInfo(number, generateValidMonth(), generateValidYear(), generateValidCardholderName(), generateNumbers(3));
+        return new CardInfo(number, generateValidMonth(), generateValidYear(), generateLatin(), generateNumbers(3));
     }
 
     public static CardInfo monthValidate(String month) {
-        return new CardInfo(getValidCardNumber(), month, generateValidYear(), generateValidCardholderName(), generateNumbers(3));
+        return new CardInfo(getValidCardNumber(), month, generateValidYear(), generateLatin(), generateNumbers(3));
     }
 
     public static CardInfo yearValidate(String year) {
-        return new CardInfo(getValidCardNumber(), generateValidMonth(), year, generateValidCardholderName(), generateNumbers(3));
+        return new CardInfo(getValidCardNumber(), generateValidMonth(), year, generateLatin(), generateNumbers(3));
     }
 
     public static CardInfo cardholderNameValidate(String name) {
@@ -43,7 +43,7 @@ public class DataHelper {
     }
 
     public static CardInfo cvcCodeValidate(String cvc) {
-        return new CardInfo(getValidCardNumber(), generateValidMonth(), generateValidYear(), generateValidCardholderName(), cvc);
+        return new CardInfo(getValidCardNumber(), generateValidMonth(), generateValidYear(), generateLatin(), cvc);
     }
 
     public static String getValidCardNumber() {
@@ -66,13 +66,14 @@ public class DataHelper {
         return LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
     }
 
-    public static String generateValidCardholderName() {
-        return faker.name().lastName() + " " + faker.name().firstName();
-    }
-
     public static String generateNumbers(int quantity) {
 
         return String.format(faker.number().digits(quantity));
+    }
+
+    public static String generateNumbersBetween(int min, int max) {
+
+        return String.format("%02d", faker.number().numberBetween(min, max));
     }
 
     public static String generateZero(int quantity) {
@@ -82,6 +83,10 @@ public class DataHelper {
             zero = zero + "0";
         }
         return zero;
+    }
+
+    public static String generateLatin() {
+        return faker.name().lastName() + " " + faker.name().firstName();
     }
 
     public static String generateCyrillic() {

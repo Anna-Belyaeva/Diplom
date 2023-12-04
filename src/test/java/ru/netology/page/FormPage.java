@@ -19,7 +19,6 @@ public class FormPage {
     private final SelenideElement cvc = inner.find(exactText("CVC/CVV")).$(".input__control");
     private final SelenideElement completeButton = $$(".button__text").find(exactText(" Продолжить"));
 
-
     private final SelenideElement successfulMessage = $$(".notification__content")
             .find(exactText("Операция одобрена Банком."));
     private final SelenideElement errorMessage = $$(".notification__content")
@@ -34,6 +33,11 @@ public class FormPage {
         cvc.setValue(info.getCvcCode());
 
         completeButton.click();
+    }
+
+    public static String getValueAttribute(int place){
+        SelenideElement attributePlace = $$(".input__control").get(place);
+        return attributePlace.getAttribute("value");
     }
 
     public void messageSuccessfulNotification() {
