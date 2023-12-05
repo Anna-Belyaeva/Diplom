@@ -1,9 +1,8 @@
 package ru.netology.test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.FormPage;
@@ -13,7 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditTest {
 
-    FormPage formPage = new FormPage();
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
+    }
 
     @BeforeEach
     void paymentTur() {
@@ -26,6 +33,7 @@ public class CreditTest {
         SQLHelper.cleanDataBase();
     }
 
+    FormPage formPage = new FormPage();
 
     @Test
     @DisplayName("44.Credit with a approved card")
@@ -207,10 +215,10 @@ public class CreditTest {
     @DisplayName("62.Credit.Expired month")
     void creditExpiredMonth() {
 
-        var yearInt = Byte.parseByte(DataHelper.generateValidYear()) - 1;
-        String yearStr = String.valueOf(yearInt);
+        var monthInt = Byte.parseByte(DataHelper.generateValidMonth()) - 1;
+        String monthStr = String.valueOf(monthInt);
 
-        var card = DataHelper.monthValidate(yearStr);
+        var card = DataHelper.monthValidate(monthStr);
         formPage.setPaymentCardInfo(card);
 
         formPage.messageExpiredValidity(1);

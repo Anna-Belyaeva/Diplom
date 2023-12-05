@@ -79,12 +79,12 @@ public class DataHelper {
     }
 
     public static String generateLatin() {
-        return faker.name().lastName() + " " + faker.name().firstName();
+        return faker.name().firstName() + " " + faker.name().lastName();
     }
 
     public static String generateCyrillic() {
         var faker = new Faker(new Locale("ru"));
-        return faker.name().lastName() + " " + faker.name().firstName();
+        return faker.name().firstName() + " " + faker.name().lastName();
     }
 
     public static String generateHieroglyph() {
