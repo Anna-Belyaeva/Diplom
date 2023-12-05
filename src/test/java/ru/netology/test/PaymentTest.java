@@ -74,6 +74,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate("");
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageEmptyField(0);
     }
 
@@ -83,6 +84,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate("");
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageEmptyField(1);
     }
 
@@ -92,6 +94,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate("");
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageEmptyField(2);
     }
 
@@ -101,6 +104,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate("");
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageEmptyField(3);
     }
 
@@ -110,6 +114,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate("");
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageEmptyField(4);
     }
 
@@ -119,6 +124,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateNumbers(15));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
     }
 
@@ -140,6 +146,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
         assertEquals("", FormPage.getValueAttribute(0));
     }
@@ -150,6 +157,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
         assertEquals("", FormPage.getValueAttribute(0));
     }
@@ -160,6 +168,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
         assertEquals("", FormPage.getValueAttribute(0));
     }
@@ -170,6 +179,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
         assertEquals("", FormPage.getValueAttribute(0));
     }
@@ -180,6 +190,7 @@ public class PaymentTest {
         var card = DataHelper.cardNumberValidate(DataHelper.generateZero(16));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(1, 2, 3, 4);
         formPage.messageWrongFormat(0);
     }
 
@@ -189,6 +200,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateNumbers(1));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongFormat(1);
     }
 
@@ -208,6 +220,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateNumbersBetween(13, 99));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongValidity(1);
     }
 
@@ -221,6 +234,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(monthStr);
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageExpiredValidity(1);
     }
 
@@ -230,6 +244,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongFormat(1);
         assertEquals("", FormPage.getValueAttribute(1));
     }
@@ -240,6 +255,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongFormat(1);
         assertEquals("", FormPage.getValueAttribute(1));
     }
@@ -250,6 +266,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongFormat(1);
         assertEquals("", FormPage.getValueAttribute(1));
     }
@@ -260,6 +277,7 @@ public class PaymentTest {
         var card = DataHelper.monthValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 2, 3, 4);
         formPage.messageWrongFormat(1);
         assertEquals("", FormPage.getValueAttribute(1));
     }
@@ -270,6 +288,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(DataHelper.generateNumbers(1));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongFormat(2);
     }
 
@@ -292,6 +311,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(yearStr);
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongValidity(2);
     }
 
@@ -305,6 +325,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(yearStr);
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageExpiredValidity(2);
     }
 
@@ -314,6 +335,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongFormat(2);
         assertEquals("", FormPage.getValueAttribute(2));
     }
@@ -324,6 +346,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongFormat(2);
         assertEquals("", FormPage.getValueAttribute(2));
     }
@@ -334,6 +357,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongFormat(2);
         assertEquals("", FormPage.getValueAttribute(2));
     }
@@ -344,6 +368,7 @@ public class PaymentTest {
         var card = DataHelper.yearValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 3, 4);
         formPage.messageWrongFormat(2);
         assertEquals("", FormPage.getValueAttribute(2));
     }
@@ -354,6 +379,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateLatin().substring(0, 1));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageWrongFormat(3);
     }
 
@@ -363,6 +389,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateNumbers(2));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageWrongFormat(3);
         assertEquals("", FormPage.getValueAttribute(3));
     }
@@ -373,6 +400,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageWrongFormat(3);
         assertEquals("", FormPage.getValueAttribute(3));
     }
@@ -383,6 +411,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageWrongFormat(3);
         assertEquals("", FormPage.getValueAttribute(3));
     }
@@ -393,6 +422,7 @@ public class PaymentTest {
         var card = DataHelper.cardholderNameValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 4);
         formPage.messageWrongFormat(3);
         assertEquals("", FormPage.getValueAttribute(3));
     }
@@ -403,6 +433,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateNumbers(2));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
     }
 
@@ -422,6 +453,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateZero(3));
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
     }
 
@@ -431,6 +463,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateChar());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
         assertEquals("", FormPage.getValueAttribute(4));
     }
@@ -441,6 +474,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateHieroglyph());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
         assertEquals("", FormPage.getValueAttribute(4));
     }
@@ -451,6 +485,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateLatin());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
         assertEquals("", FormPage.getValueAttribute(4));
     }
@@ -461,6 +496,7 @@ public class PaymentTest {
         var card = DataHelper.cvcCodeValidate(DataHelper.generateCyrillic());
         formPage.setPaymentCardInfo(card);
 
+        formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
         assertEquals("", FormPage.getValueAttribute(4));
     }

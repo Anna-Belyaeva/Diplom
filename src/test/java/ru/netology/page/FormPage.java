@@ -63,4 +63,26 @@ public class FormPage {
     public void messageExpiredValidity(int place) {
         inner.get(place).shouldHave(text("Истёк срок действия карты")).shouldBe(visible, Duration.ofSeconds(15));
     }
+
+    public void emptySub(int p1, int p2, int p3, int p4) {
+        inner.get(p1).shouldNotHave(text("Неверный формат"));
+        inner.get(p1).shouldNotHave(text("Поле обязательно для заполнения"));
+        inner.get(p1).shouldNotHave(text("Неверно указан срок действия карты"));
+        inner.get(p1).shouldNotHave(text("Истёк срок действия карты"));
+
+        inner.get(p2).shouldNotHave(text("Неверный формат"));
+        inner.get(p2).shouldNotHave(text("Поле обязательно для заполнения"));
+        inner.get(p2).shouldNotHave(text("Неверно указан срок действия карты"));
+        inner.get(p2).shouldNotHave(text("Истёк срок действия карты"));
+
+        inner.get(p3).shouldNotHave(text("Неверный формат"));
+        inner.get(p3).shouldNotHave(text("Поле обязательно для заполнения"));
+        inner.get(p3).shouldNotHave(text("Неверно указан срок действия карты"));
+        inner.get(p3).shouldNotHave(text("Истёк срок действия карты"));
+
+        inner.get(p4).shouldNotHave(text("Неверный формат"));
+        inner.get(p4).shouldNotHave(text("Поле обязательно для заполнения"));
+        inner.get(p4).shouldNotHave(text("Неверно указан срок действия карты"));
+        inner.get(p4).shouldNotHave(text("Истёк срок действия карты"));
+    }
 }
