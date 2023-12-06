@@ -64,3 +64,5 @@
 ## Тестовая документация
 
 1. [План автоматизации](https://github.com/Anna-Belyaeva/Diplom/blob/main/docs/Plan.md)
+2. [Итоги тестирования](https://github.com/Anna-Belyaeva/Diplom/blob/main/docs/Report.md)
+3. [Итоги автоматизации](https://github.com/Anna-Belyaeva/Diplom/blob/main/docs/Summary.md)
