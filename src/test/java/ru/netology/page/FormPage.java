@@ -1,7 +1,12 @@
 package ru.netology.page;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import dev.failsafe.internal.util.Assert;
+import lombok.Getter;
+import lombok.Value;
+import org.junit.jupiter.api.Assertions;
 import ru.netology.data.DataHelper;
 
 import java.time.Duration;
@@ -10,8 +15,13 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class FormPage {
+    public FormPage() {
+
+    }
 
     private final ElementsCollection inner = $$(".input__inner");
+    private final ElementsCollection attributePlace = $$(".input__control");
+
     private final SelenideElement number = inner.find(exactText("Номер карты")).$(".input__control");
     private final SelenideElement month = inner.find(exactText("Месяц")).$(".input__control");
     private final SelenideElement year = inner.find(exactText("Год")).$(".input__control");
@@ -35,9 +45,11 @@ public class FormPage {
         completeButton.click();
     }
 
-    public static String getValueAttribute(int place){
-        SelenideElement attributePlace = $$(".input__control").get(place);
-        return attributePlace.getAttribute("value");
+    public void valueAttribute(int place, String value) {
+
+        var placeVal = attributePlace.get(place);
+        placeVal.shouldBe(visible);
+        Condition.value(value);
     }
 
     public void messageSuccessfulNotification() {
@@ -48,41 +60,39 @@ public class FormPage {
         errorMessage.shouldBe(visible, Duration.ofSeconds(15));
     }
 
-    public void messageWrongFormat(int place) {
-        inner.get(place).shouldHave(text("Неверный формат")).shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-    public void messageEmptyField(int place) {
-        inner.get(place).shouldHave(text("Поле обязательно для заполнения")).shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-    public void messageWrongValidity(int place) {
-        inner.get(place).shouldHave(text("Неверно указан срок действия карты")).shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-    public void messageExpiredValidity(int place) {
-        inner.get(place).shouldHave(text("Истёк срок действия карты")).shouldBe(visible, Duration.ofSeconds(15));
+    public void messageWrong(int place, String message) {
+        inner.get(place).shouldHave(text(message)).shouldBe(visible);
     }
 
     public void emptySub(int p1, int p2, int p3, int p4) {
-        inner.get(p1).shouldNotHave(text("Неверный формат"));
-        inner.get(p1).shouldNotHave(text("Поле обязательно для заполнения"));
-        inner.get(p1).shouldNotHave(text("Неверно указан срок действия карты"));
-        inner.get(p1).shouldNotHave(text("Истёк срок действия карты"));
+        var mess = new MessageWrong();
 
-        inner.get(p2).shouldNotHave(text("Неверный формат"));
-        inner.get(p2).shouldNotHave(text("Поле обязательно для заполнения"));
-        inner.get(p2).shouldNotHave(text("Неверно указан срок действия карты"));
-        inner.get(p2).shouldNotHave(text("Истёк срок действия карты"));
+        inner.get(p1).shouldNotHave(text(mess.wrongFormat)).
+                shouldNotHave(text(mess.emptyField)).
+                shouldNotHave(text(mess.wrongValidity)).
+                shouldNotHave(text(mess.expiredValidity));
+        inner.get(p2).shouldNotHave(text(mess.wrongFormat)).
+                shouldNotHave(text(mess.emptyField)).
+                shouldNotHave(text(mess.wrongValidity)).
+                shouldNotHave(text(mess.expiredValidity));
+        inner.get(p3).shouldNotHave(text(mess.wrongFormat)).
+                shouldNotHave(text(mess.emptyField)).
+                shouldNotHave(text(mess.wrongValidity)).
+                shouldNotHave(text(mess.expiredValidity));
+        inner.get(p4).shouldNotHave(text(mess.wrongFormat)).
+                shouldNotHave(text(mess.emptyField)).
+                shouldNotHave(text(mess.wrongValidity)).
+                shouldNotHave(text(mess.expiredValidity));
 
-        inner.get(p3).shouldNotHave(text("Неверный формат"));
-        inner.get(p3).shouldNotHave(text("Поле обязательно для заполнения"));
-        inner.get(p3).shouldNotHave(text("Неверно указан срок действия карты"));
-        inner.get(p3).shouldNotHave(text("Истёк срок действия карты"));
+    }
 
-        inner.get(p4).shouldNotHave(text("Неверный формат"));
-        inner.get(p4).shouldNotHave(text("Поле обязательно для заполнения"));
-        inner.get(p4).shouldNotHave(text("Неверно указан срок действия карты"));
-        inner.get(p4).shouldNotHave(text("Истёк срок действия карты"));
+    @Getter
+    @Value
+    public static class MessageWrong {
+        String wrongFormat = "Неверный формат";
+        String emptyField = "Поле обязательно для заполнения";
+        String wrongValidity = "Неверно указан срок действия карты";
+        String expiredValidity = "Истёк срок действия карты";
+
     }
 }

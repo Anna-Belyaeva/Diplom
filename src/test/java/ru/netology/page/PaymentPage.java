@@ -9,24 +9,21 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class PaymentPage {
 
+    public PaymentPage() {
+        open("http://localhost:8080/");
+    }
+
     private final SelenideElement paymentButton = $$(".button__text").find(exactText("Купить"));
 
     private final SelenideElement creditButton = $$(".button__text").find(exactText("Купить в кредит"));
 
-    private final SelenideElement paymentHeading = $$(".heading").find(exactText("Оплата по карте"));
-
-    private final SelenideElement creditHeading = $$(".heading").find(exactText("Кредит по данным карты"));
-
-
-    public void paymentCard() {
-        open("http://localhost:8080/");
+    public PaymentCardPage validPaymentCard() {
         paymentButton.click();
-        paymentHeading.shouldBe(visible);
+        return new PaymentCardPage();
     }
 
-    public void paymentCredit() {
-        open("http://localhost:8080/");
+    public PaymentCreditPage validPaymentCredit() {
         creditButton.click();
-        creditHeading.shouldBe(visible);
+        return new PaymentCreditPage();
     }
 }

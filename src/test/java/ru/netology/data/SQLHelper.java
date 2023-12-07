@@ -48,7 +48,6 @@ public class SQLHelper {
         runner.execute(connection, "DELETE FROM payment_entity;");
         runner.execute(connection, "DELETE FROM credit_request_entity;");
     }
-
 }
 
 

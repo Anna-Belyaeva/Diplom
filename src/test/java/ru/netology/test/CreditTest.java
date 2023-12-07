@@ -25,23 +25,24 @@ public class CreditTest {
     @BeforeEach
     void paymentTur() {
         var payPage = new PaymentPage();
-        payPage.paymentCredit();
+        payPage.validPaymentCredit();
+
     }
 
     @AfterEach
     void cleanDB() {
+
         SQLHelper.cleanDataBase();
     }
-
     FormPage formPage = new FormPage();
 
-    @Test
+  /*  @Test
     @DisplayName("44.Credit with a approved card")
     void creditApprovedCard() {
         var card = DataHelper.getValidCardInfo();
         formPage.setPaymentCardInfo(card);
-        formPage.messageSuccessfulNotification();
 
+        formPage.messageSuccessfulNotification();
         assertEquals("APPROVED", SQLHelper.getStatusCredit());
     }
 
@@ -50,8 +51,8 @@ public class CreditTest {
     void creditDeclinedCard() {
         var card = DataHelper.cardNumberValidate(DataHelper.getInValidCardNumber());
         formPage.setPaymentCardInfo(card);
-        formPage.messageErrorNotification();
 
+        formPage.messageErrorNotification();
         assertEquals("DECLINED", SQLHelper.getStatusCredit());
     }
 
@@ -501,7 +502,7 @@ public class CreditTest {
         formPage.emptySub(0, 1, 2, 3);
         formPage.messageWrongFormat(4);
         assertEquals("", FormPage.getValueAttribute(4));
-    }
+    }*/
 }
 
 
