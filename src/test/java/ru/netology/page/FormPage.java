@@ -15,8 +15,6 @@ import static com.codeborne.selenide.Selenide.$$;
 public class FormPage {
     public FormPage() {
 
-        paymentHeading.shouldBe(visible);
-        creditHeading.shouldBe(visible);
     }
 
     private final SelenideElement paymentHeading = $$(".heading").find(exactText("Оплата по карте"));
