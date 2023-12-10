@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class PaymentPage {
 
     public PaymentPage() {
+
         open("http://localhost:8080/");
     }
 
@@ -17,13 +18,13 @@ public class PaymentPage {
 
     private final SelenideElement creditButton = $$(".button__text").find(exactText("Купить в кредит"));
 
-    public PaymentCardPage validPaymentCard() {
+   public FormPage validPaymentCard() {
         paymentButton.click();
-        return new PaymentCardPage();
+        return new FormPage();
     }
 
-    public PaymentCreditPage validPaymentCredit() {
+    public FormPage validPaymentCredit() {
         creditButton.click();
-        return new PaymentCreditPage();
+        return new FormPage();
     }
 }

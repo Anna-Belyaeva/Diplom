@@ -11,6 +11,8 @@ import ru.netology.page.PaymentPage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CreditTest {
+    FormPage formPage;
+    FormPage.MessageWrong mess = new FormPage.MessageWrong();
 
     @BeforeAll
     static void setUpAll() {
@@ -25,18 +27,16 @@ public class CreditTest {
     @BeforeEach
     void paymentTur() {
         var payPage = new PaymentPage();
-        payPage.validPaymentCredit();
+        formPage = payPage.validPaymentCredit();
 
     }
 
     @AfterEach
     void cleanDB() {
-
         SQLHelper.cleanDataBase();
     }
-    FormPage formPage = new FormPage();
 
-  /*  @Test
+    @Test
     @DisplayName("44.Credit with a approved card")
     void creditApprovedCard() {
         var card = DataHelper.getValidCardInfo();
@@ -62,11 +62,11 @@ public class CreditTest {
         var card = DataHelper.getEmptyCardInfo();
         formPage.setPaymentCardInfo(card);
 
-        formPage.messageEmptyField(0);
-        formPage.messageEmptyField(1);
-        formPage.messageEmptyField(2);
-        formPage.messageEmptyField(3);
-        formPage.messageEmptyField(4);
+        formPage.messageWrong(0, mess.getEmptyField());
+        formPage.messageWrong(1, mess.getEmptyField());
+        formPage.messageWrong(2, mess.getEmptyField());
+        formPage.messageWrong(3, mess.getEmptyField());
+        formPage.messageWrong(4, mess.getEmptyField());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageEmptyField(0);
+        formPage.messageWrong(0, mess.getEmptyField());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageEmptyField(1);
+        formPage.messageWrong(1, mess.getEmptyField());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageEmptyField(2);
+        formPage.messageWrong(2, mess.getEmptyField());
     }
 
     @Test
@@ -106,7 +106,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageEmptyField(3);
+        formPage.messageWrong(3, mess.getEmptyField());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageEmptyField(4);
+        formPage.messageWrong(4, mess.getEmptyField());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
+        formPage.messageWrong(0, mess.getWrongFormat());
     }
 
     @Test
@@ -138,7 +138,7 @@ public class CreditTest {
 
 
         formPage.messageErrorNotification();
-        assertEquals(number.substring(0, 16), FormPage.getValueAttribute(0).replaceAll(" ", ""));
+        formPage.valueAttribute(0, number.substring(0, 16));
     }
 
     @Test
@@ -149,8 +149,8 @@ public class CreditTest {
 
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
-        assertEquals("", FormPage.getValueAttribute(0));
+        formPage.messageWrong(0, mess.getWrongFormat());
+        formPage.valueAttribute(0, "");
     }
 
     @Test
@@ -160,8 +160,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
-        assertEquals("", FormPage.getValueAttribute(0));
+        formPage.messageWrong(0, mess.getWrongFormat());
+        formPage.valueAttribute(0, "");
     }
 
     @Test
@@ -171,8 +171,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
-        assertEquals("", FormPage.getValueAttribute(0));
+        formPage.messageWrong(0, mess.getWrongFormat());
+        formPage.valueAttribute(0, "");
     }
 
     @Test
@@ -182,8 +182,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
-        assertEquals("", FormPage.getValueAttribute(0));
+        formPage.messageWrong(0, mess.getWrongFormat());
+        formPage.valueAttribute(0, "");
     }
 
     @Test
@@ -193,7 +193,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(1, 2, 3, 4);
-        formPage.messageWrongFormat(0);
+        formPage.messageWrong(0, mess.getWrongFormat());
     }
 
     @Test
@@ -203,7 +203,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongFormat(1);
+        formPage.messageWrong(1, mess.getWrongFormat());
     }
 
     @Test
@@ -213,7 +213,7 @@ public class CreditTest {
         var card = DataHelper.monthValidate(number);
         formPage.setPaymentCardInfo(card);
 
-        assertEquals(number.substring(0, 2), FormPage.getValueAttribute(1));
+        formPage.valueAttribute(1, number.substring(0, 2));
     }
 
     @Test
@@ -223,7 +223,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongValidity(1);
+        formPage.messageWrong(1, mess.getWrongValidity());
     }
 
     @Test
@@ -238,7 +238,7 @@ public class CreditTest {
 
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageExpiredValidity(1);
+        formPage.messageWrong(1, mess.getExpiredValidity());
     }
 
     @Test
@@ -248,8 +248,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongFormat(1);
-        assertEquals("", FormPage.getValueAttribute(1));
+        formPage.messageWrong(1, mess.getWrongFormat());
+        formPage.valueAttribute(1, "");
     }
 
     @Test
@@ -259,8 +259,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongFormat(1);
-        assertEquals("", FormPage.getValueAttribute(1));
+        formPage.messageWrong(1, mess.getWrongFormat());
+        formPage.valueAttribute(1, "");
     }
 
     @Test
@@ -270,8 +270,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongFormat(1);
-        assertEquals("", FormPage.getValueAttribute(1));
+        formPage.messageWrong(1, mess.getWrongFormat());
+        formPage.valueAttribute(1, "");
     }
 
     @Test
@@ -281,8 +281,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 2, 3, 4);
-        formPage.messageWrongFormat(1);
-        assertEquals("", FormPage.getValueAttribute(1));
+        formPage.messageWrong(1, mess.getWrongFormat());
+        formPage.valueAttribute(1, "");
     }
 
     @Test
@@ -292,7 +292,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongFormat(2);
+        formPage.messageWrong(2, mess.getWrongFormat());
     }
 
     @Test
@@ -302,7 +302,7 @@ public class CreditTest {
         var card = DataHelper.yearValidate(number);
         formPage.setPaymentCardInfo(card);
 
-        assertEquals(number.substring(0, 2), FormPage.getValueAttribute(2));
+        formPage.valueAttribute(2, number.substring(0, 2));
     }
 
     @Test
@@ -315,7 +315,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongValidity(2);
+        formPage.messageWrong(2, mess.getWrongValidity());
     }
 
     @Test
@@ -329,7 +329,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageExpiredValidity(2);
+        formPage.messageWrong(2, mess.getExpiredValidity());
     }
 
     @Test
@@ -339,8 +339,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongFormat(2);
-        assertEquals("", FormPage.getValueAttribute(2));
+        formPage.messageWrong(2, mess.getWrongFormat());
+        formPage.valueAttribute(2, "");
     }
 
     @Test
@@ -350,8 +350,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongFormat(2);
-        assertEquals("", FormPage.getValueAttribute(2));
+        formPage.messageWrong(2, mess.getWrongFormat());
+        formPage.valueAttribute(2, "");
     }
 
     @Test
@@ -361,8 +361,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongFormat(2);
-        assertEquals("", FormPage.getValueAttribute(2));
+        formPage.messageWrong(2, mess.getWrongFormat());
+        formPage.valueAttribute(2, "");
     }
 
     @Test
@@ -372,8 +372,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 3, 4);
-        formPage.messageWrongFormat(2);
-        assertEquals("", FormPage.getValueAttribute(2));
+        formPage.messageWrong(2, mess.getWrongFormat());
+        formPage.valueAttribute(2, "");
     }
 
     @Test
@@ -383,7 +383,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageWrongFormat(3);
+        formPage.messageWrong(3, mess.getWrongFormat());
     }
 
     @Test
@@ -393,8 +393,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageWrongFormat(3);
-        assertEquals("", FormPage.getValueAttribute(3));
+        formPage.messageWrong(3, mess.getWrongFormat());
+        formPage.valueAttribute(3, "");
     }
 
     @Test
@@ -404,8 +404,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageWrongFormat(3);
-        assertEquals("", FormPage.getValueAttribute(3));
+        formPage.messageWrong(3, mess.getWrongFormat());
+        formPage.valueAttribute(3, "");
     }
 
     @Test
@@ -415,8 +415,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageWrongFormat(3);
-        assertEquals("", FormPage.getValueAttribute(3));
+        formPage.messageWrong(3, mess.getWrongFormat());
+        formPage.valueAttribute(3, "");
     }
 
     @Test
@@ -426,8 +426,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 4);
-        formPage.messageWrongFormat(3);
-        assertEquals("", FormPage.getValueAttribute(3));
+        formPage.messageWrong(3, mess.getWrongFormat());
+        formPage.valueAttribute(3, "");
     }
 
     @Test
@@ -437,7 +437,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
+        formPage.messageWrong(4, mess.getWrongFormat());
     }
 
     @Test
@@ -447,7 +447,7 @@ public class CreditTest {
         var card = DataHelper.cvcCodeValidate(number);
         formPage.setPaymentCardInfo(card);
 
-        assertEquals(number.substring(0, 3), FormPage.getValueAttribute(4));
+        formPage.valueAttribute(4, number.substring(0, 3));
     }
 
     @Test
@@ -457,7 +457,7 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
+        formPage.messageWrong(4, mess.getWrongFormat());
     }
 
     @Test
@@ -467,8 +467,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
-        assertEquals("", FormPage.getValueAttribute(4));
+        formPage.messageWrong(4, mess.getWrongFormat());
+        formPage.valueAttribute(4, "");
     }
 
     @Test
@@ -478,8 +478,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
-        assertEquals("", FormPage.getValueAttribute(4));
+        formPage.messageWrong(4, mess.getWrongFormat());
+        formPage.valueAttribute(4, "");
     }
 
     @Test
@@ -489,8 +489,8 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
-        assertEquals("", FormPage.getValueAttribute(4));
+        formPage.messageWrong(4, mess.getWrongFormat());
+        formPage.valueAttribute(4, "");
     }
 
     @Test
@@ -500,9 +500,9 @@ public class CreditTest {
         formPage.setPaymentCardInfo(card);
 
         formPage.emptySub(0, 1, 2, 3);
-        formPage.messageWrongFormat(4);
-        assertEquals("", FormPage.getValueAttribute(4));
-    }*/
+        formPage.messageWrong(4, mess.getWrongFormat());
+        formPage.valueAttribute(4, "");
+    }
 }
 
 

@@ -11,6 +11,8 @@ import ru.netology.page.PaymentPage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PaymentTest {
+    FormPage formPage;
+    FormPage.MessageWrong mess = new FormPage.MessageWrong();
 
     @BeforeAll
     static void setUpAll() {
@@ -26,10 +28,9 @@ public class PaymentTest {
 
     @BeforeEach
     void paymentTur() {
+       var payPage = new PaymentPage();
+       formPage = payPage.validPaymentCard();
 
-        var payPage = new PaymentPage();
-        payPage.validPaymentCard();
-        var formPage = new FormPage();
     }
 
     @AfterEach
@@ -37,8 +38,6 @@ public class PaymentTest {
 
         SQLHelper.cleanDataBase();
     }
-
-    FormPage.MessageWrong mess = new FormPage.MessageWrong();
 
     @Test
     @DisplayName("1.Payment with a approved card")

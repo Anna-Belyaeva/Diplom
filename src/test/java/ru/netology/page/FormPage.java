@@ -3,10 +3,8 @@ package ru.netology.page;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import dev.failsafe.internal.util.Assert;
 import lombok.Getter;
 import lombok.Value;
-import org.junit.jupiter.api.Assertions;
 import ru.netology.data.DataHelper;
 
 import java.time.Duration;
@@ -17,7 +15,12 @@ import static com.codeborne.selenide.Selenide.$$;
 public class FormPage {
     public FormPage() {
 
+        paymentHeading.shouldBe(visible);
+        creditHeading.shouldBe(visible);
     }
+
+    private final SelenideElement paymentHeading = $$(".heading").find(exactText("Оплата по карте"));
+    private final SelenideElement creditHeading = $$(".heading").find(exactText("Кредит по данным карты"));
 
     private final ElementsCollection inner = $$(".input__inner");
     private final ElementsCollection attributePlace = $$(".input__control");
@@ -34,7 +37,6 @@ public class FormPage {
     private final SelenideElement errorMessage = $$(".notification__content")
             .find(exactText("Ошибка! Банк отказал в проведении операции."));
 
-
     public void setPaymentCardInfo(DataHelper.CardInfo info) {
         number.setValue(info.getCardNumber());
         month.setValue(info.getMonthValidity());
@@ -44,24 +46,25 @@ public class FormPage {
 
         completeButton.click();
     }
+    public void messageSuccessfulNotification() {
+
+        successfulMessage.shouldBe(visible, Duration.ofSeconds(15));
+    }
+
+    public void messageErrorNotification() {
+
+        errorMessage.shouldBe(visible, Duration.ofSeconds(15));
+    }
+
+    public void messageWrong(int place, String message) {
+        inner.get(place).shouldHave(text(message)).shouldBe(visible);
+    }
 
     public void valueAttribute(int place, String value) {
 
         var placeVal = attributePlace.get(place);
         placeVal.shouldBe(visible);
         Condition.value(value);
-    }
-
-    public void messageSuccessfulNotification() {
-        successfulMessage.shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-    public void messageErrorNotification() {
-        errorMessage.shouldBe(visible, Duration.ofSeconds(15));
-    }
-
-    public void messageWrong(int place, String message) {
-        inner.get(place).shouldHave(text(message)).shouldBe(visible);
     }
 
     public void emptySub(int p1, int p2, int p3, int p4) {

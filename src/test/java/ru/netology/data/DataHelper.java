@@ -102,7 +102,6 @@ public class DataHelper {
         return genChar[new Random().nextInt(genChar.length)];
     }
 
-
     @Value
     public static class CardInfo {
         String cardNumber;
